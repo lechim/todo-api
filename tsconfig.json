@@ -1,0 +1,26 @@
+{
+	"ts-node": {
+		"require": ["tsconfig-paths/register"]
+	},
+	"compilerOptions": {
+		"target": "es5",
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"esModuleInterop": true,
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true,
+		"rootDir": "./",
+		"outDir": "./dist",
+		"typeRoots": ["./types"],
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["./*"]
+		}
+	}
+}
