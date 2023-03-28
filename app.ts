@@ -7,6 +7,9 @@ import userRoutes from './routes/userRouter'
 const app: Express = express()
 const port = process.env.PORT || 3001
 
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+
 app.get('/', (req: Request, res: Response) => {
 	res.send('Todo API')
 })
@@ -14,6 +17,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/auth', authRoutes)
 
 app.use(verifyJWT)
+/////all routes below are auth protected/////////////////////////////////////////////////////////////////
 
 app.use('/todo', todoRoutes)
 
