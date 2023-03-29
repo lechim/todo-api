@@ -21,10 +21,19 @@ model Todo {
 }
 
 model User {
+    id           String         @id @default(cuid())
+    todos        Todo[]
+    username     String         @unique
+    password     String
+    updatedAt    DateTime       @default(now()) @updatedAt
+    createdAt    DateTime       @default(now())
+    RefreshToken RefreshToken[]
+}
+
+model RefreshToken {
     id        String   @id @default(cuid())
-    todos     Todo[]
-    username  String   @unique
-    password  String
-    updatedAt DateTime @default(now()) @updatedAt
+    userId    String
+    user      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+    token     String   @unique @db.VarChar(760)
     createdAt DateTime @default(now())
 }

@@ -3,12 +3,14 @@ import { verifyJWT } from './middleware/verifyJWT'
 import authRoutes from './routes/authRouter'
 import todoRoutes from './routes/todoRouter'
 import userRoutes from './routes/userRouter'
+import cookieParser from 'cookie-parser'
 
 const app: Express = express()
 const port = process.env.PORT || 3001
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(cookieParser())
 
 app.get('/', (req: Request, res: Response) => {
 	res.send('Todo API')
