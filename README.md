@@ -16,12 +16,21 @@ Powered by Express.js
 
 ## Getting Started
 
+Save example.env as .env
+
+Generate a secure key for accessTokenSecret and again for refreshTokenSecret in .env
+
+Run the prisma generate command to link to database
+
+```bash
+npm run gen
+```
+
 First, run the development server:
 
 ```bash
 npm i
 npm run dev
-
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -32,7 +41,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 npm i
 npm run build
 npm run start
-
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
