@@ -16,6 +16,9 @@ const AuthRegister = async (req: Request, res: Response) => {
 		try {
 			schema.parse(req.body)
 		} catch (err) {
+			if (err instanceof z.ZodError) {
+				return res.status(400).json({ message: 'Incorrect parameters', errors: err.errors })
+			}
 			return res.status(400).json({ message: 'Incorrect parameters' })
 		}
 

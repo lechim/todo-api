@@ -2,7 +2,7 @@
 
 ## _Developed By Jean-Michel Steyn_
 
-API used for my ToDo api.
+API used for my Todo App.
 
 Powered by Express.js
 
@@ -12,6 +12,7 @@ Powered by Express.js
 -   Prisma
 -   Typescript
 -   JWT Auth
+-   Zod Validation
 
 ## Getting Started
 

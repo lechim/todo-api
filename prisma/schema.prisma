@@ -13,11 +13,13 @@ datasource db {
 model Todo {
     id          String   @id @default(cuid())
     title       String
+    isDeleted   Boolean  @default(false) //basic soft delete, updatedAt will show delete time
+    completed   Boolean  @default(false)
     description String   @db.LongText
     updatedAt   DateTime @default(now()) @updatedAt
     createdAt   DateTime @default(now())
     User        User?    @relation(fields: [userId], references: [id])
-    userId      String?
+    userId      String? //to work with guests
 }
 
 model User {

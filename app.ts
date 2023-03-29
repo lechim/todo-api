@@ -6,7 +6,7 @@ import userRoutes from './routes/userRouter'
 import cookieParser from 'cookie-parser'
 
 const app: Express = express()
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3000
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())

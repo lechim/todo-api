@@ -2,25 +2,29 @@ import { Request, Response } from 'express'
 import { RequestWithUser } from 'types/request'
 import prisma from '../../utils/prisma'
 
-const GetUser = async (req: Request, res: Response) => {
+const ListTodo = async (req: Request, res: Response) => {
 	const requestUser = (req as RequestWithUser).user
 
 	try {
-		const user = await prisma.user.findFirst({
+		const todos = await prisma.todo.findMany({
 			where: {
-				id: requestUser.id,
+				userId: requestUser.id,
+				isDeleted: false,
 			},
 			select: {
 				id: true,
-				username: true,
+				completed: true,
+				description: true,
+				title: true,
+				updatedAt: true,
 				createdAt: true,
 			},
 		})
 
-		return res.status(201).json({ user: user })
+		return res.status(200).json({ todos: todos })
 	} catch (e) {
 		return res.status(500).json({ msg: 'Something went wrong, please retry.' })
 	}
 }
 
-export default GetUser
+export default ListTodo

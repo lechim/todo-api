@@ -16,6 +16,9 @@ const AuthLogin = async (req: Request, res: Response) => {
 		try {
 			schema.parse(req.body)
 		} catch (err) {
+			if (err instanceof z.ZodError) {
+				return res.status(400).json({ message: 'Incorrect parameters', errors: err.errors })
+			}
 			return res.status(400).json({ message: 'Incorrect parameters' })
 		}
 
@@ -51,7 +54,6 @@ const AuthLogin = async (req: Request, res: Response) => {
 		try {
 			const arr = []
 			if (cookies?.jwt) {
-				console.log('token', cookies?.jwt)
 				res.clearCookie('jwt', { httpOnly: true, secure: true, sameSite: 'strict' })
 				const deleteOld = prisma.refreshToken.delete({
 					where: {
@@ -70,7 +72,6 @@ const AuthLogin = async (req: Request, res: Response) => {
 			arr.push(createNew)
 			await Promise.all(arr)
 		} catch (e) {
-			console.error('e1:', e)
 			return res.status(500).json({ msg: 'Something went wrong, please retry.' })
 		}
 

@@ -1,8 +1,8 @@
-import UserAccount from '../controllers/user/getUser'
 import express from 'express'
+import GetUser from '../controllers/user/getUser'
 
 const userRoutes = express.Router()
 
-userRoutes.get('/account', UserAccount)
+userRoutes.get('/', GetUser)
 
 export default userRoutes
